@@ -166,6 +166,7 @@ def to_python(value):
 
 
 class Country(models.Model):
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=40, unique=True, blank=True)
     code = models.CharField(max_length=2, blank=True)  # not unique as there are duplicates (IT)
 
@@ -182,6 +183,7 @@ class Country(models.Model):
 
 
 class State(models.Model):
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=165, blank=True)
     code = models.CharField(max_length=64, blank=True)
     country = models.ForeignKey(Country, on_delete=models.CASCADE, related_name='states')
@@ -207,6 +209,7 @@ class State(models.Model):
 
 
 class Locality(models.Model):
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=165, blank=True)
     postal_code = models.CharField(max_length=10, blank=True)
     state = models.ForeignKey(State, on_delete=models.CASCADE, related_name='localities')
@@ -236,6 +239,7 @@ class Locality(models.Model):
 
 
 class Address(models.Model):
+    id = models.AutoField(primary_key=True)
     street_number = models.CharField(max_length=20, blank=True)
     route = models.CharField(max_length=100, blank=True)
     locality = models.ForeignKey(Locality, on_delete=models.CASCADE, related_name='addresses', blank=True, null=True)
